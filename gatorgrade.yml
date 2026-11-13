@@ -1,0 +1,82 @@
+# Fifteen checks. Each project is different, so the code checks read the shape of the files in src
+# rather than running your program: classes, methods, docstrings, hardware, lists, dictionaries, loops
+# and decisions. Your program running on the board is what the code review and the demo fair look at.
+# Pull main before you run the checks, so you have your merged work.
+
+- description: "[MAIN] src/main.py has a docstring and a main() function, and imports classes from at least two of your class files"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_main_brings_the_classes_together
+
+- description: "[CLASSES] At least two files in src besides main.py each define a class, and a team has at least one for each person"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_there_are_at_least_two_class_files
+
+- description: "[CLASSES] Each class has __init__ and at least two more methods"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_each_class_has_init_and_two_more_methods
+
+- description: "[CLASSES] At least two methods return a value"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_methods_return_values
+
+- description: "[CODE] Each class and function in src has a docstring"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_each_class_and_function_has_a_docstring
+
+- description: "[HARDWARE] The project reads an input: a Pin with Pin.IN, or an ADC"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_the_project_reads_an_input
+
+- description: "[HARDWARE] The project drives an output: a Pin with Pin.OUT, or a PWM"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_the_project_drives_an_output
+
+- description: "[CODE] The code in src uses a list and a dictionary"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_the_project_uses_a_list_and_a_dictionary
+
+- description: "[CODE] The code in src uses a loop and an if statement"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_the_project_uses_a_loop_and_a_decision
+
+- description: "[CODE] Each class file imports without an error on a pretend board"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_each_class_file_imports_on_a_pretend_board
+
+- description: "[CODE] No TODO markers remain in any file in src: delete each one once its code is written, including Author"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_no_file_has_a_todo
+
+- description: "[CODE] Each file in src has at least two comments: say why, not what the line already says"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_each_file_has_two_comments
+
+- description: "[GIT] At least two pull requests are merged with Merge pull request"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_pull_requests_were_merged
+
+- docs/design.md:
+  - description: "[DESIGN] No TODO markers remain in docs/design.md: replace each one with your writing, then delete it"
+    check: MatchFileFragment
+    options:
+      fragment: TODO
+      count: 0
+      exact: true
+  - description: "[DESIGN] At least 300 words in docs/design.md"
+    check: CountFileWords
+    options:
+      count: 300
+      exact: false

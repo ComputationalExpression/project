@@ -1,0 +1,28 @@
+{
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "files.exclude": {
+    "**/.*": true,
+    ".stubs": true,
+    "gatorgrade.yml": true
+  },
+  "[markdown]": {
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  },
+  "[python]": {
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  },
+  "editor.tabSize": 4,
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.diagnosticSeverityOverrides": {
+      "reportMissingModuleSource": "none"
+  },
+  "python.terminal.activateEnvironment": false,
+  "python.analysis.extraPaths": [
+      ".stubs",
+      "src"
+  ]
+}
