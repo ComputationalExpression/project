@@ -132,10 +132,10 @@ def test_each_class_and_function_has_a_docstring():
 
 
 def test_the_project_reads_an_input():
-    inputs = [node for node in calls("Pin") if mentions(node, "IN")] + calls("ADC")
+    inputs = [node for node in calls("Pin") if mentions(node, "IN")] + calls("ADC") + calls("DHT22")
     assert inputs, (
-        "found no input on the board: a button is Pin(number, Pin.IN, Pin.PULL_UP), and the light sensor and the "
-        "temperature sensor are read with ADC"
+        "found no input on the board: a button is Pin(number, Pin.IN, Pin.PULL_UP), the light sensor and the "
+        "chip's temperature sensor are read with ADC, and the DHT22 is dht.DHT22(Pin(number))"
     )
 
 

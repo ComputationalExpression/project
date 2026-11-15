@@ -28,7 +28,7 @@
   options:
     command: uv run pytest tests/test_project.py::test_each_class_and_function_has_a_docstring
 
-- description: "[HARDWARE] The project reads an input: a Pin with Pin.IN, or an ADC"
+- description: "[HARDWARE] The project reads an input: a Pin with Pin.IN, an ADC, or a DHT22"
   check: ExecuteCommand
   options:
     command: uv run pytest tests/test_project.py::test_the_project_reads_an_input

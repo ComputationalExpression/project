@@ -64,8 +64,8 @@ practices and Python language fundamentals.
 Your project needs to:
 
 * run on the Pico 2 W from `src/main.py`, which makes the objects and connects them
-* read at least one input (a button, the light sensor, or the temperature sensor in the Pico's chip)
-  and drive at least one output (an LED or the buzzer)
+* read at least one input (a button, the light sensor, the temperature sensor in the Pico's chip,
+  or the DHT22) and drive at least one output (an LED or the buzzer)
 * keep each class in its own file in `src`, with `__init__` and at least two more methods in each
   class, and at least two methods across the project that return a value
 * use at least one list, one dictionary, one loop and one `if` statement
@@ -91,8 +91,8 @@ the project once, as a team, through Classroom50.
 
 ## Hardware
 
-You can use each part from your kit: the LEDs with their resistors, the push button, and the
-temperature sensor in the Pico's chip, as in Labs 5 through 8. A light sensor and a buzzer are also
+You can use each part from your kit: the LEDs with their resistors, the push button, the
+temperature sensor in the Pico's chip, and the DHT22, as in Labs 5 through 8. A light sensor and a buzzer are also
 available. Please ask Dr. Jumadinova for the ones you need by the pitch on November 23. Remember
 to unplug the USB cable before you change the wiring.
 
@@ -146,7 +146,7 @@ code review, you will draw your class diagram on the whiteboard.
 1. **Write your idea and team** in `docs/design.md`.
 2. **Plan your classes.** Each thing in your project, such as a sensor, a light, a game or a log,
    can be a class. What it remembers becomes its attributes, and what it does becomes its methods.
-   Please see [Methods, Abstraction, Encapsulation, slide 13](https://computationalexpression.com/slides/week-12-session-3/#13).
+   Please see [Your Final Project, slides 6 and 7](https://computationalexpression.com/slides/week-13-session-1/#6).
 3. **Get one part working first.** Wire one input and one output, and test them with a short
    program on the board before you write the classes.
 4. **Build one class at a time**, each on its own branch, and merge it through a pull request.
@@ -227,7 +227,7 @@ found and what was expected. Here are the fifteen checks:
 * each class has `__init__` and at least two more methods
 * at least two methods return a value
 * each class and function has a docstring
-* the project reads an input with `Pin.IN` or `ADC`
+* the project reads an input with `Pin.IN`, `ADC` or `dht.DHT22`
 * the project drives an output with `Pin.OUT` or `PWM`
 * the code uses a list and a dictionary
 * the code uses a loop and an `if` statement
