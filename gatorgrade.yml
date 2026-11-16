@@ -1,6 +1,6 @@
 # Fifteen checks. Each project is different, so the code checks read the shape of the files in src
 # rather than running your program: classes, methods, docstrings, hardware, lists, dictionaries, loops
-# and decisions. Your program running on the board is what the code review and the demo fair look at.
+# and decisions. Your program running on the board is what the demo fair looks at.
 # Pull main before you run the checks, so you have your merged work.
 
 - description: "[MAIN] src/main.py has a docstring and a main() function, and imports classes from at least two of your class files"
@@ -33,10 +33,10 @@
   options:
     command: uv run pytest tests/test_project.py::test_the_project_reads_an_input
 
-- description: "[HARDWARE] The project drives an output: a Pin with Pin.OUT, or a PWM"
+- description: "[HARDWARE] The project controls an output: a Pin with Pin.OUT, or a PWM"
   check: ExecuteCommand
   options:
-    command: uv run pytest tests/test_project.py::test_the_project_drives_an_output
+    command: uv run pytest tests/test_project.py::test_the_project_controls_an_output
 
 - description: "[CODE] The code in src uses a list and a dictionary"
   check: ExecuteCommand
@@ -48,10 +48,10 @@
   options:
     command: uv run pytest tests/test_project.py::test_the_project_uses_a_loop_and_a_decision
 
-- description: "[CODE] Each class file imports without an error on a pretend board"
+- description: "[CODE] Python can load each class file without an error, such as a typo or a missing import (your board is not needed)"
   check: ExecuteCommand
   options:
-    command: uv run pytest tests/test_project.py::test_each_class_file_imports_on_a_pretend_board
+    command: uv run pytest tests/test_project.py::test_each_class_file_loads_without_an_error
 
 - description: "[CODE] No TODO markers remain in any file in src: delete each one once its code is written, including Author"
   check: ExecuteCommand
@@ -68,15 +68,15 @@
   options:
     command: uv run pytest tests/test_project.py::test_pull_requests_were_merged
 
-- docs/design.md:
-  - description: "[DESIGN] No TODO markers remain in docs/design.md: replace each one with your writing, then delete it"
+- description: "[REPORT] The Reflection section of docs/report.md has at least 300 words of your own"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_project.py::test_the_reflection_has_300_words
+
+- docs/report.md:
+  - description: "[REPORT] No TODO markers remain in docs/report.md: replace each one with your writing, then delete it"
     check: MatchFileFragment
     options:
       fragment: TODO
       count: 0
       exact: true
-  - description: "[DESIGN] At least 300 words in docs/design.md"
-    check: CountFileWords
-    options:
-      count: 300
-      exact: false

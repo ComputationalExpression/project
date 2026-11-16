@@ -6,9 +6,9 @@ body:
     attributes:
       value: |
         In a team, each person has their own review about the files they wrote, so open one issue per
-        person. Fill it out with the student present, with the project running on their board and a
-        whiteboard beside you. Leave a box unchecked when the answer does not show the understanding
-        described.
+        person. Fill it out with the student present and a whiteboard beside you. The review is
+        questions about the reviewee's code, not a demo: the project runs on the board at the demo fair.
+        Leave a box unchecked when the answer does not show the understanding described.
   - type: input
     attributes:
       label: Reviewer
@@ -30,11 +30,6 @@ body:
       placeholder: src/sensor.py, src/main.py
     validations:
       required: true
-  - type: checkboxes
-    attributes:
-      label: The project on the board
-      options:
-        - label: The project runs on the board and reads its input and drives its output
   - type: markdown
     attributes:
       value: |
@@ -60,7 +55,7 @@ body:
         - What happens when the input is at its lowest or highest?
 
         **Hardware**
-        - Which pins do your input and output use, and which lines of code read and drive them?
+        - Which pins do your input and output use, and which lines of code read and control them?
         - What number does your input give, and how does your code turn it into something meaningful?
   - type: checkboxes
     attributes:
@@ -71,7 +66,7 @@ body:
         - label: "Methods and self: the reviewee can trace one of their methods on the whiteboard, with the attributes before and after"
         - label: "Data: the reviewee can explain what their list and dictionary hold and trace a loop over one of them"
         - label: "Decisions: the reviewee can explain one of their if statements, including a value at its edge"
-        - label: "Hardware: the reviewee can explain how their code reads its input and drives its output"
+        - label: "Hardware: the reviewee can explain how their code reads its input and controls its output"
   - type: textarea
     attributes:
       label: The Good, The Bad, The Ugly

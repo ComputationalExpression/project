@@ -4,8 +4,9 @@ Every project is different, so these checks read the shape of the code in src
 rather than running it: they parse each file as Python and look for classes,
 methods, docstrings, hardware, lists, dictionaries, loops and decisions. Strings
 and comments do not count, so a word in a comment cannot pass a check. The one
-check that runs code imports each class file on a pretend board, which catches a
-syntax error or a missing import without needing your hardware.
+check that runs code loads each class file on the laptop, with stand-ins for the
+Pico's machine and dht modules, which catches a syntax error or a missing import
+without needing your board.
 
 When a check fails, the assertion message says what was found and what was
 expected. gatorgrade does not show that message itself; it prints the pytest
@@ -139,7 +140,7 @@ def test_the_project_reads_an_input():
     )
 
 
-def test_the_project_drives_an_output():
+def test_the_project_controls_an_output():
     outputs = [node for node in calls("Pin") if mentions(node, "OUT")] + calls("PWM")
     assert outputs, "found no output on the board: an LED is Pin(number, Pin.OUT), and the buzzer is PWM(Pin(number))"
 
@@ -160,14 +161,14 @@ def test_the_project_uses_a_loop_and_a_decision():
     assert ifs, "found no if statement in src, besides the one that calls main()"
 
 
-def test_each_class_file_imports_on_a_pretend_board():
+def test_each_class_file_loads_without_an_error():
     for path in need_classes():
         result = subprocess.run(
             [sys.executable, "-c", f"import mockro\nimport {path.stem}"],
             cwd=SRC, capture_output=True, text=True, timeout=10, check=False,
         )
         last = result.stderr.strip().splitlines()[-1:] or [""]
-        assert result.returncode == 0, f"importing src/{path.name} stopped with: {last[0]}"
+        assert result.returncode == 0, f"Python could not load src/{path.name}: {last[0]}"
 
 
 def test_no_file_has_a_todo():
@@ -199,3 +200,14 @@ def test_pull_requests_were_merged():
         f"found {len(merged)} merged pull requests, expected at least 2. Merge with Merge pull request, not Squash "
         f"and merge, and pull main before you run this check"
     )
+
+
+def test_the_reflection_has_300_words():
+    report = ROOT / "docs" / "report.md"
+    text = report.read_text(encoding="utf-8")
+    assert "## Reflection" in text, "docs/report.md has no '## Reflection' heading: please keep the headings from the starter"
+    section = text.split("## Reflection", 1)[1].split("\n## ", 1)[0]
+    # The prompts are quoted lines starting with >, and they do not count
+    words = [w for line in section.splitlines() if not line.lstrip().startswith(">") for w in line.split()]
+    words = [w for w in words if w != "TODO"]
+    assert len(words) >= 300, f"the Reflection section of docs/report.md has {len(words)} words of your own, expected at least 300"

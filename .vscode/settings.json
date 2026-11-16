@@ -1,4 +1,13 @@
 {
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": false
+  },
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "chat.agent.enabled": false,
+  "chat.commandCenter.enabled": false,
   "security.workspace.trust.banner": "never",
   "security.workspace.trust.untrustedFiles": "open",
   "files.exclude": {
@@ -18,11 +27,11 @@
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.diagnosticSeverityOverrides": {
-      "reportMissingModuleSource": "none"
+    "reportMissingModuleSource": "none"
   },
   "python.terminal.activateEnvironment": false,
   "python.analysis.extraPaths": [
-      ".stubs",
-      "src"
+    ".stubs",
+    "src"
   ]
 }

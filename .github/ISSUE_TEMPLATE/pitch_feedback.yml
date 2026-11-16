@@ -1,0 +1,33 @@
+name: Pitch Feedback
+description: Feedback on a final project pitch, from a classmate, a Technical Leader (TL) or the instructor.
+title: "Pitch Feedback"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for listening to this pitch. Please be specific and kind: name what you heard, and
+        suggest something the team can act on.
+  - type: input
+    attributes:
+      label: Your GitHub username
+      placeholder: your-github-username
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What works well
+      description: One thing about the idea or the plan that you liked, and why
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: A question
+      description: Something about the project that you would like to know more about
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: A suggestion
+      description: One change or addition that could make the project better, such as a feature, a part, or a simpler first step
+    validations:
+      required: true

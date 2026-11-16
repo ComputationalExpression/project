@@ -4,13 +4,14 @@
 |:----|:------|
 |Released |Monday, November 16, in class |
 |Pitch |Monday, November 23, in class |
-|Due |Friday, December 4, 2:30pm, with the code review at the lab session |
+|Code review |Friday, December 4, at the lab session |
+|Due |Monday, December 7, 9:00am |
 |Demo fair |Monday, December 7, 9:00am (Exam Code A) |
 |Progress |[![Grade](../../actions/workflows/main.yml/badge.svg?branch=main)](../../actions/workflows/main.yml) |
 
 For the final project, you design and build a program of your own on the Pico 2 W. It can be a
 game, a tool, an alarm, an instrument, a monitor, or anything else you would like to make, as long
-as it reads at least one input, drives at least one output, and is built from classes.
+as it reads at least one input, controls at least one output, and is built from classes.
 
 You can work on your own or in a team of two or three.
 
@@ -23,7 +24,7 @@ You can work on your own or in a team of two or three.
 * [Hardware](#hardware)
   * [The light sensor](#the-light-sensor)
   * [The buzzer](#the-buzzer)
-* [The design document](#the-design-document)
+* [The project report](#the-project-report)
 * [Getting started](#getting-started)
 * [The pitch](#the-pitch)
 * [Code review](#code-review)
@@ -54,10 +55,10 @@ practices and Python language fundamentals.
 |Date |What happens |
 |:----|:------------|
 |Monday, November 16 |The project is released. Please start thinking about ideas, and form a team if you would like one |
-|Monday, November 23 |Pitch your idea at your table. Before class, please write the first two sections of `docs/design.md` |
-|November 23 to December 4 |Build the project on branches, merging each part through a pull request |
-|Friday, December 4, 2:30pm |The project is due on `main`. Your code review, with a whiteboard, happens at the lab session |
-|Monday, December 7, 9:00am |Demo fair |
+|Monday, November 23 |You pitch your idea. Before class, please write the first four sections of `docs/report.md`: the idea, the team, the hardware, and the classes |
+|November 23 to December 7 |You build the project on branches, merging each part through a pull request |
+|Friday, December 4 |Your code review, with a whiteboard, at the lab session |
+|Monday, December 7, 9:00am |The project is due on `main`, and the demo fair begins |
 
 ## Requirements
 
@@ -65,13 +66,13 @@ Your project needs to:
 
 * run on the Pico 2 W from `src/main.py`, which makes the objects and connects them
 * read at least one input (a button, the light sensor, the temperature sensor in the Pico's chip,
-  or the DHT22) and drive at least one output (an LED or the buzzer)
+  or the DHT22) and control at least one output (an LED or the buzzer)
 * keep each class in its own file in `src`, with `__init__` and at least two more methods in each
   class, and at least two methods across the project that return a value
 * use at least one list, one dictionary, one loop and one `if` statement
 * have a docstring for each class and function, and at least two comments in each file
-* be built on branches and merged through at least two pull requests, with Merge pull request
-* have a complete `docs/design.md`
+* be built on branches and merged through at least two pull requests
+* have a complete `docs/report.md`
 
 The program can use what we have covered in class and anything else you learn along the way,
 provided you can explain it at the code review.
@@ -86,15 +87,15 @@ provided you can explain it at the code review.
 |Pitch and demo fair |One pitch and one demo station |One pitch and one demo station for the team, where each person speaks |
 |Code review |One review |One review for each person, about the files they wrote |
 
-Please list your team, and who owns which file, in `docs/design.md` by the pitch. A team accepts
+Please list your team, and who writes which file, in `docs/report.md` by the pitch. A team accepts
 the project once, as a team, through Classroom50.
 
 ## Hardware
 
 You can use each part from your kit: the LEDs with their resistors, the push button, the
-temperature sensor in the Pico's chip, and the DHT22, as in Labs 5 through 8. A light sensor and a buzzer are also
-available. Please ask Dr. Jumadinova for the ones you need by the pitch on November 23. Remember
-to unplug the USB cable before you change the wiring.
+temperature sensor in the Pico's chip, and the DHT22, as in Labs 5 through 8. A light sensor and a
+buzzer are also available. Please ask Dr. Jumadinova for the ones you need by the pitch on
+November 23. Remember to unplug the USB cable before you change the wiring.
 
 ![The Pico 2 W pinout, with each pin's GP number](images/pico-2-pinout.svg)
 
@@ -121,7 +122,7 @@ reading = light.read_u16()  # 0 in the dark, up to 65535 in bright light
 
 The buzzer has two legs, and the longer one, marked `+`, goes to a GP pin. The shorter one goes to
 **GND**. It sounds when its pin is switched on and off quickly, which `PWM` does for you. `freq` sets
-the pitch in hertz, and `duty_u16` sets it sounding (`32768`) or quiet (`0`).
+the pitch in hertz, and `duty_u16` turns the sound on (`32768`) or off (`0`).
 
 ```python
 from machine import PWM, Pin
@@ -134,19 +135,32 @@ sleep(0.5)
 buzzer.duty_u16(0)      # off
 ```
 
-## The design document
+## The project report
 
-`docs/design.md` describes your project: the idea, the team, the hardware with its pins, a diagram
-of how your classes connect, the feedback from your pitch, and how you used AI. Please write the
-first two sections before the pitch, and keep the rest up to date as the project changes. At the
-code review, you will draw your class diagram on the whiteboard.
+`docs/report.md` has six sections. Please write the first four before the pitch, and keep them up
+to date as the project changes:
+
+1. **The idea**: what your project does, and who would use it
+2. **The team**: "Individual", or each teammate and the class files they write
+3. **The hardware**: each part, what it does, and its GP pin
+4. **The classes**: a diagram of `main.py` and your classes, with each class's attributes above a
+   line and its methods below it, and a few sentences on what each class remembers and does
+
+After the pitch, you write the last two:
+
+5. **The pitch feedback**: two pieces of feedback you received, and what you changed because of each
+6. **Reflection**: at least 300 words on your challenges, how you used AI, and an ethical question
+   about your project
+
+At the code review, you will draw your class diagram on the whiteboard.
 
 ## Getting started
 
-1. **Write your idea and team** in `docs/design.md`.
+1. **Write your idea and team** in `docs/report.md`.
 2. **Plan your classes.** Each thing in your project, such as a sensor, a light, a game or a log,
    can be a class. What it remembers becomes its attributes, and what it does becomes its methods.
    Please see [Your Final Project, slides 6 and 7](https://computationalexpression.com/slides/week-13-session-1/#6).
+   Draw the plan in the classes section of `docs/report.md`.
 3. **Get one part working first.** Wire one input and one output, and test them with a short
    program on the board before you write the classes.
 4. **Build one class at a time**, each on its own branch, and merge it through a pull request.
@@ -165,18 +179,21 @@ along the bottom of the window, with **Board Connected** showing beside it:
 
 ## The pitch
 
-On Monday, November 23, you will pitch your idea to the other students at your table, in two or
-three minutes: what the project does, who would use it, the hardware, and the classes you plan.
-Your classmates will give you written feedback, and you will give feedback on theirs. Please write
-two pieces of feedback you received, and what you changed because of them, in `docs/design.md`.
+On Monday, November 23, you will pitch your idea in two or three minutes to a small group of
+classmates with a Technical Leader or Dr. Jumadinova: what the project does, who would use it, the
+hardware, and the classes you plan. Your listeners give you feedback by opening a **Pitch
+Feedback** issue on your repository, and you open one on the repository of each classmate whose
+pitch you hear. To open one, go to the repository's **Issues** tab, click **New issue**, and choose
+**Pitch Feedback**.
 
 ## Code review
 
 Your code review is at the lab session on Friday, December 4, with a Technical Leader or the
-instructor. You will run your project on the board, draw your class diagram on the whiteboard, and
-answer questions about your own code. In a team, each person has their own review, about the files
-they wrote. The reviewer opens a **Code Review** issue on your repository. The questions differ
-from student to student, so please be ready to:
+instructor. It is a conversation about your code, and you do not need to run the project for it.
+You will draw your class diagram on the whiteboard and answer questions about the code you wrote.
+In a team, each person has their own review, about the files they wrote. The reviewer opens a
+**Code Review** issue on your repository. The questions differ from student to student, so please
+be ready to:
 
 * **Classes and objects**: explain what each of your classes remembers and does, and how `main.py`
   connects them
@@ -185,7 +202,8 @@ from student to student, so please be ready to:
 * **Data**: explain what your list and dictionary hold, and trace a loop over one of them
 * **Decisions**: explain one of your `if` statements, and what happens at its edge, such as a
   reading exactly at a dividing value
-* **Hardware**: explain how your code reads its input and drives its output, and which pins they use
+* **Hardware**: explain how your code reads its input and controls its output, and which pins they
+  use
 
 If you cannot attend that lab, please arrange your review beforehand at office hours.
 
@@ -193,9 +211,9 @@ If you cannot attend that lab, please arrange your review beforehand at office h
 
 The demo fair is during the final exam slot, on Monday, December 7, at 9:00am. Half of the class
 sets up their projects at stations while the other half visits, and the two halves swap at the
-midpoint. When it is your turn at a station, you will show your project running and explain in two
-or three minutes what it does and how it works, to each small group that visits. When it is your
-turn to visit, you will fill in a feedback sheet for each project you see.
+midpoint. When it is your turn at a station, you will run your project on the board and explain in
+two or three minutes what it does and how it works, to each small group that visits. When it is
+your turn to visit, you will fill in a feedback sheet for each project you see.
 
 ## Evaluation
 
@@ -203,14 +221,15 @@ The project is worth **18 points**.
 
 | Component | Points | What it measures |
 |:----------|:-------|:-----------------|
-| Pitch | 2 | Your idea and team written in `docs/design.md` before the pitch (1), your pitch and the feedback you gave classmates (1) |
-| Program | 8 | The 15 checks below, as a fraction of 4 points; code quality in the files you wrote: descriptive names, clear organization and useful comments (2); a complete `docs/design.md` that matches the code (2) |
-| Code review | 5 | One point for each of the five topics above, answered with your own code on the whiteboard |
-| Demo fair | 3 | The project running at your station (1), your explanation of how it works (1), and your feedback sheets for classmates' projects (1) |
+| Pitch | 2 | The first four sections of `docs/report.md` written before the pitch (1), and your pitch with the Pitch Feedback issues you opened for classmates (1) |
+| Program | 8 | The 15 checks below, as a fraction of 4 points; code quality in the files you wrote: descriptive names, clear organization and useful comments (2); the first five sections of `docs/report.md` complete and matching the code (1); the reflection (1) |
+| Code review | 5 | One point for each of the five topics above, answered about your own code on the whiteboard |
+| Demo fair | 3 | The project running on the board at your station (1), your explanation of how it works (1), and your feedback sheets for classmates' projects (1) |
 | **Total** | **18** | |
 
-In a team, the checks and the design document are shared, and the code quality score, the code
-review and the feedback sheets are your own.
+In a team, the checks and the first five sections of the report are shared. The code quality
+score, the code review, the feedback sheets and the reflection are your own, so each teammate
+writes their own reflection under a heading with their name.
 
 You can run the checks yourself, as many times as you like:
 
@@ -220,35 +239,52 @@ uv run gatorgrade --config gatorgrade.yml
 
 Each check's description says what to look at when it fails. Under a failed check, gatorgrade
 also prints a `uv run pytest ...` command, and when you run it, the last lines tell you what was
-found and what was expected. Here are the fifteen checks:
+found and what was expected. These are the fifteen checks:
 
-* `src/main.py` has a docstring and a `main()` function, and imports from at least two class files
-* at least two files in `src` besides `main.py` each define a class
+* `src/main.py` has a docstring and a `main()` function, and imports classes from at least two of
+  your class files
+* at least two files in `src` besides `main.py` each define a class, and a team has at least one
+  for each person
 * each class has `__init__` and at least two more methods
-* at least two methods return a value
+* at least two methods return a value with `return`
 * each class and function has a docstring
-* the project reads an input with `Pin.IN`, `ADC` or `dht.DHT22`
-* the project drives an output with `Pin.OUT` or `PWM`
+* the code reads an input: a `Pin` with `Pin.IN`, an `ADC`, or a `dht.DHT22`
+* the code controls an output: a `Pin` with `Pin.OUT`, or a `PWM`
 * the code uses a list and a dictionary
 * the code uses a loop and an `if` statement
-* each class file imports without an error on a pretend board
+* Python can load each class file without an error. The check does this on your laptop with
+  stand-ins for the Pico's `machine` and `dht` modules, so it finds a typo, a missing import or a
+  misspelled name without your board
 * no `TODO` markers remain in `src`
 * each file in `src` has at least two comments
-* at least two pull requests are merged with Merge pull request
-* no `TODO` markers remain in `docs/design.md`
-* `docs/design.md` has at least 300 words
+* at least two pull requests are merged on GitHub with the **Merge pull request** button, rather
+  than **Squash and merge**, which leaves no merge in the history
+* no `TODO` markers remain in `docs/report.md`
+* the Reflection section of `docs/report.md` has at least 300 words of your own
+
+The checks read the shape of your code without running it, so the demo fair is where your
+project shows that it works.
 
 > [!NOTE]
 > Automated results are preliminary. Your instructor sets the final grade.
 
 ## Using AI
 
-You are welcome to use AI tools such as GitHub Copilot on this project, with two expectations.
-Please make sure you understand each line you submit, since the code review asks you to trace and
-explain your own code on the whiteboard. Please also describe in `docs/design.md` which tools you
-used, what you asked them, and which parts of your code they helped with.
+On this project, you may use AI in three ways:
+
+* **Code completion**: Copilot's gray suggestions as you type, which this repository turns on.
+  Accept them one word or one line at a time, as in Activity 10, and keep only lines you can
+  explain
+* **Testing**: deciding which cases to try on the board, and which values sit at the edge of an
+  `if`
+* **Brainstorming**: talking through ideas, features, parts and a class plan in Copilot Chat
+
+Copilot Chat does not write code for you in this repository, and code written for you by any other
+AI tool is not allowed. At the code review, you trace and explain your own code on the
+whiteboard. Please describe in the reflection which tools you used, what you asked them, and which
+parts of your code they helped with.
 
 ## Submitting
 
-The `main` branch on GitHub at 2:30pm on Friday, December 4, is what gets graded, so please merge
+The `main` branch on GitHub at 9:00am on Monday, December 7, is what gets graded, so please merge
 your pull requests before then. Late tokens cannot be used on the final project.
