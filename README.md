@@ -9,7 +9,7 @@
 |Demo fair |Monday, December 7, 9:00am (Exam Code A) |
 |Progress |[![Grade](../../actions/workflows/main.yml/badge.svg?branch=main)](../../actions/workflows/main.yml) |
 
-For the final project, you design and build a program of your own on the Pico 2 W. It can be a
+For the final project, you design and build a device of your own on the Pico 2 W. It can be a
 game, a tool, an alarm, an instrument, a monitor, or anything else you would like to make, as long
 as it reads at least one input, controls at least one output, and is built from classes.
 
