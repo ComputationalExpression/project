@@ -23,12 +23,13 @@ def brightness_percent(reading):
 # Twenty readings, one every two seconds
 for count in range(20):
     reading = light.read_u16()
+    percent = brightness_percent(reading)
     if reading < DARK:
         led.on()
-        print(reading, brightness_percent(reading), "percent: dark, light on")
+        print(f"Raw reading: {reading} out of 65535, brightness: {percent} percent, dark, LED on")
     else:
         led.off()
-        print(reading, brightness_percent(reading), "percent: bright, light off")
+        print(f"Raw reading: {reading} out of 65535, brightness: {percent} percent, bright, LED off")
     sleep(2)
 
 led.off()
