@@ -150,8 +150,9 @@ click **Run**:
 * `play_melody.py` plays a song from a list of notes, with a dictionary that turns each note's name
   into a pitch
 
-The buzzer plays one pitch at a time, so it can play notes and melodies but not a music file such
-as an MP3.
+The buzzer plays one pitch at a time, so it can play notes and melodies but not a music file. To
+play an MP3, you need a DFPlayer Mini board, a microSD card and a small speaker, and
+`examples/play_mp3_file.py` shows how to wire and use them.
 
 ## The project report
 
