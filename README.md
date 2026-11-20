@@ -124,6 +124,8 @@ The buzzer has two legs, and the longer one, marked `+`, goes to a GP pin. The s
 **GND**. It sounds when its pin is switched on and off quickly, which `PWM` does for you. `freq` sets
 the pitch in hertz, and `duty_u16` turns the sound on (`32768`) or off (`0`).
 
+![A passive buzzer wired to GP18 on the breadboard](images/buzzer-circuit.svg)
+
 ```python
 from machine import PWM, Pin
 from time import sleep
@@ -134,6 +136,16 @@ buzzer.duty_u16(32768)  # on
 sleep(0.5)
 buzzer.duty_u16(0)      # off
 ```
+
+Two programs in `examples` let you try the buzzer before you write your own class. Open one and
+click **Run**:
+
+* `buzzer_beep.py` plays a few beeps at different pitches
+* `play_melody.py` plays a song from a list of notes, with a dictionary that turns each note's name
+  into a pitch
+
+The buzzer plays one pitch at a time, so it can play notes and melodies but not a music file such
+as an MP3.
 
 ## The project report
 
