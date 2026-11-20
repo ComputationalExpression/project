@@ -111,12 +111,18 @@ The light sensor is a photoresistor, which lets more current through in brighter
 With this wiring, the reading goes up as the room gets brighter. GP26, GP27 and GP28 can each
 read a light sensor.
 
+![A photoresistor and a 10k ohm resistor wired to GP26 on the breadboard](images/light-sensor-circuit.svg)
+
 ```python
 from machine import ADC
 
 light = ADC(26)
 reading = light.read_u16()  # 0 in the dark, up to 65535 in bright light
 ```
+
+`examples/light_sensor.py` prints twenty readings and turns on the Pico's own LED when the room is
+dark. Open it and click **Run**, then cover the photoresistor with your hand to see the reading
+drop.
 
 ### The buzzer
 
